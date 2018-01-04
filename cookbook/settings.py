@@ -43,10 +43,16 @@ CORE_APPS = (
     'apps.ingredients',
 )
 THIRD_PATTY_APPS = (
-    
+    'graphene_django',
+    'django_graphiql',
 )
 INSTALLED_APPS = DJANGO_CORE_APPS + THIRD_PATTY_APPS + CORE_APPS
 
+#GRAPHENE
+
+GRAPHENE = {
+    'SCHEMA': 'cookbook.schema.schema'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -63,7 +69,7 @@ ROOT_URLCONF = 'cookbook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -126,4 +132,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+
+# Extra places for collectstatic to find static files.
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = [
+    #os.path.join(BASE_DIR, "static")
+    os.path.join(BASE_DIR, "static_pro","static"),
+]
+
+
+STATIC_ROOT = os.path.join((BASE_DIR), "venv","static_env","static_root")
+MEDIA_ROOT = os.path.join((BASE_DIR),  "venv","static_env","media_root")
+
+
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+
