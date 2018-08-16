@@ -40,7 +40,7 @@ DJANGO_CORE_APPS = (
 )
 CORE_APPS = (
     'apps',
-    'apps.ingredients',
+    'apps.mutants',
 )
 THIRD_PATTY_APPS = (
     'graphene_django',

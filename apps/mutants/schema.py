@@ -2,7 +2,7 @@ import graphene
 
 from graphene_django.types import DjangoObjectType
 
-from .models import Category, Ingredient
+from .models import Category, Mutant
 
 
 class CategoryType(DjangoObjectType):
@@ -10,18 +10,18 @@ class CategoryType(DjangoObjectType):
         model = Category
 
 
-class IngredientType(DjangoObjectType):
+class MutantType(DjangoObjectType):
     class Meta:
-        model = Ingredient
+        model = Mutant
 
 
 class Query(object):
     all_categories = graphene.List(CategoryType)
-    all_ingredients = graphene.List(IngredientType)
+    all_mutants = graphene.List(MutantType)
 
     def resolve_all_categories(self, info, **kwargs):
         return Category.objects.all()
 
-    def resolve_all_ingredients(self, info, **kwargs):
+    def resolve_all_mutants(self, info, **kwargs):
         # We can easily optimize query count in the resolve method
-        return Ingredient.objects.select_related('category').all()
+        return Mutant.objects.select_related('category').all()

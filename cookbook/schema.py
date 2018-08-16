@@ -1,9 +1,9 @@
 import graphene
 
-import apps.ingredients.schema
+import apps.mutants.schema
 
 
-class Query(apps.ingredients.schema.Query, graphene.ObjectType):
+class Query(apps.mutants.schema.Query, graphene.ObjectType):
     # This class will inherit from multiple Queries
     # as we begin to add more apps to our project
     pass
